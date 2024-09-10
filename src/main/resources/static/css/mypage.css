@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'LINESeedKR-Bd';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#useName{
+	margin-right: 25px;
+	margin-top: 15px;
+}
+
+
+/* 회원가입 폼 상단 텍스트  */
+#MypageTitle {
+	width: 100%;
+	height: 250px;
+	text-align: center;
+	margin-top: 8%
+}
+
+#info1 {
+	margin-top: 10%;
+	font-family: 'LINESeedKR-Bd';
+	font-size: 55px;
+}
+
+#info2 {
+	margin-top: 10%;
+	font-size: 15px;
+}
+
+/* 마이페이지 메뉴 버튼 */
+#MypageMenu {
+	width: 100%;
+	height: 50px;
+}
+
+#mypageButton {
+	width: 33%;
+	height: 100%;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	text-align: center;
+	margin: 0 auto;
+	display: inline-block;
+	background-color: transparent;
+	color: black;
+}
+
+#mypageButton a {
+	border: none;
+	background-color: transparent;
+	line-height: 50px;
+	text-decoration-line: none;
+	color: black;
+}
+
+#mypageButton:hover {
+	cursor: pointer;
+	background-color: rgb(206, 206, 206);
+}
+/* ========================== */
+
+/* 마이페이지 회원 수정 메뉴 버튼 */
+#mypageEditButton {
+	width: 33%;
+	height: 100%;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	text-align: center;
+	margin: 0 auto;
+	display: inline-block;
+	background-color: transparent;
+	color: black;
+}
+
+#mypageEditButton a {
+	border: none;
+	background-color: transparent;
+	line-height: 50px;
+	text-decoration-line: none;
+	color: black;
+}
+
+#mypageEditButton:hover {
+	cursor: pointer;
+	background-color: rgb(206, 206, 206);
+}
+
+/* ========================== */
+
+/* 마이페이지 회원 탈퇴 메뉴 버튼 */
+.mypageButton {
+	width: 33%;	height: 100%;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	text-align: center;
+	margin: 0 auto;
+	display: inline-block;
+	background-color: transparent;
+	color: black;
+    line-height: 50px;
+}
+
+.mypageButton.clicked {
+    background-color: lightgray; /* 클릭된 상태일 때 배경색을 변경하세요 */
+}
+/* ========================== */
+.MypageText h1 {
+    font-size: 15px;
+    color: red;
+    text-align: center;
+
+}
+
+.MypageText h4 {
+	margin-top: 7%;
+	font-size: 25px;
+	text-align: center;
+}
+
+.MypageText h6 {
+	font-size: 15px;
+	text-align: center;
+}
+
+/* 마이페이지 패스워드 확인 폼 */
+#MypageForm {
+	margin-top: 5%;
+	height: 120px;
+}
+
+#MypageForm input {
+	margin: 0 auto;
+	width: 30%;
+	height: 50%;
+	display: flex;
+}
+
+/* mypageEdit.html css */
+#MypageForm button {
+	width: 30%;
+	height: 50px;
+	margin: 10px auto;
+	display: block;
+}
+
+#MypageForm h1 {
+    font-size: 15px;
+    color: red;
+    text-align: center;
+
+}
+
+
+
+footer {
+	margin-top: 200px;
+	background-color: white;
+	border-top: 1px lightgray solid;
+}

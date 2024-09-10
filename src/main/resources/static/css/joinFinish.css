@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+#useName{
+	margin-right: 25px;
+	margin-top: 15px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 회원가입 폼 상단 텍스트  */
+#infoImgText {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+
+#info {
+    width: 100%;
+    height: 350px;
+    text-align: center;
+    margin-top: 8%
+}
+
+#info1 {
+    margin-top: 10%;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 55px;
+}
+
+#info2 {
+    margin-top: 10%;
+    font-size: 15px;
+}
+
+#infoImgText img {
+    margin-left: 55%;
+    width: 300px;
+    height: 100%;
+    position: absolute;
+}
+
+.FinishText{
+    margin-top: 4%;
+    text-align: center;
+    margin-bottom: 10%;
+}
+
+.FinishText a{
+    width: 20%;
+    margin-top: 10%;
+
+    
+}
+
+

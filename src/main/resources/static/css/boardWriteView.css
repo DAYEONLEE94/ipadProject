@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+#useName{
+	margin-right: 25px;
+	margin-top: 15px;
+}
+
+
+#qImgBox {
+    width: 100%;
+    height: 300px;
+    margin-top: 3%
+}
+
+#qImgBox img {
+    width: 100%;
+    height: 100%;
+    margin-top: 3%
+}
+
+#qWriteView {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5%
+}
+
+#qWriteViewTable {
+    height: 70px;
+    border: 1px solid rgb(220, 220, 220);
+}
+
+#qWriteViewButtonBox{
+    width: 100%; 
+    margin-top: 3%;
+}
+
+.qWriteViewButton{
+    width: 100%; 
+    height: 50px;
+}
+
+.qWriteViewButton button{
+    width: 5%; 
+    height: 100%; 
+    float: right; 
+    margin-left: 10px; 
+    border: 1px solid rgb(199, 199, 199);
+}
+
+.qWriteViewcomment{
+    background-color: rgb(245, 245, 245);
+    margin: 0 auto;
+    height: 180px; 
+  
+}
+
+
+.qWriteViewcomment input{
+    width: 85%; height: 140px;
+    margin-left: 2%;
+}
+
+.qWriteViewcomment button{
+    width: 10%; height: 140px;
+
+}
+
+.qWBottom {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.qWBottom button {
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 10%;
+}

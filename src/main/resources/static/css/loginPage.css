@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+#useName{
+	margin-right: 25px;
+	margin-top: 15px;
+}
+
+
+.loginPage{
+    margin-top: 15%;
+    text-align: center;
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.loginWrite{
+    margin-top: 2%;
+}
+
+.loginWrite input{
+    display: flex;
+    margin: 0 auto;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 5px;
+    width: 35%; height: 40px;
+    margin-top: 3%;
+}
+
+.loginClickTable{
+    width: 100%;
+    display: flex;
+}
+
+#loginClick{
+    margin: 0 auto;
+    text-align: center; 
+    width: 15%; height: 50px;
+    margin-top: 5%;
+}
+
+.loginInfoSerch{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 5%;
+    
+    
+   
+}
+
+.loginInfoSerch a{
+    margin-left: 2%;
+    margin-right: 2%;
+    text-decoration: none;
+    color: gray;
+}

@@ -1,0 +1,121 @@
+@font-face {
+	font-family: 'LINESeedKR-Bd';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* 회원가입 폼 상단 텍스트  */
+#infoImgText {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+#info {
+	width: 100%;
+	height: 350px;
+	text-align: center;
+	margin-top: 15%
+}
+
+#info1 {
+	margin-top: 10%;
+	font-family: 'LINESeedKR-Bd';
+	font-size: 55px;
+}
+
+#info2 {
+	margin-top: 10%;
+	font-size: 15px;
+}
+
+#infoImgText img {
+	margin-left: 55%;
+	width: 300px;
+	height: 100%;
+	position: absolute;
+}
+
+/* 회원가입 폼 */
+#loginText {
+	font-family: 'LINESeedKR-Bd';
+	font-size: 25px;
+	margin-top: 2%;
+	height: 40%;
+	margin-left: 5%;
+}
+
+#loginInfo {
+	margin-top: 10px;
+	height: 100%;
+	font-size: 15px;
+	display: inline-block;
+}
+
+table {
+	width: 90%;
+	margin: auto;
+	
+}
+
+.tableText {
+	font-size: 12px;
+	color: rgb(121, 121, 121);
+	margin-bottom: 10px;
+}
+
+#loginInfo input {
+	border: 1px solid rgb(210, 210, 210);
+	border-radius: 15px;
+	width: 80%;
+	height: 45px;
+}
+
+#loginInfo button {
+	
+	width: 12%;
+	height: 30px;
+	border: 1px solid gray;
+	color: black;
+	border-radius: 10px;
+	font-size: 13;
+}
+
+select {
+	border: 1px solid rgb(210, 210, 210);
+	border-radius: 15px;
+	width: 80%;
+	height: 45px;
+	color: gray;
+}
+
+.infoCheck {
+	text-align: center;
+	margin-top: 10%;
+	width: 100%;
+	height: 50px;
+}
+
+.infoCheck input {
+	border: 1px solid rgb(210, 210, 210);
+	display: inline-block;
+	width: 10%;
+	height: 100%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+footer {
+	margin-top: 200px;
+	background-color: white;
+	border-top: 1px lightgray solid;
+}
