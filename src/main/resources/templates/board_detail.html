@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
 
 	<link rel="stylesheet" href="/css/boardWriteView.css">
-	<!-- <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css"> -->
+	<!--<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css"}>-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -28,16 +27,14 @@
 	<div class="container">
 		<div class="row" id="qWriteView">
 			<table>
-				<div class="col-12">
+				<div>
 					<tr id="qWriteViewTable">
 						<td th:text="${question.title}"></td>
+						<td style=" white-space: nowrap;" th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
 					</tr>
-					<tr id="qWriteViewTable">
-						<td style="width: 10%;">${bDto.writer }</td>
-						<td style="float: right; margin-top: 2%;" th:text="${question.createDate}"></td>
-					</tr>
-					<tr id="qWriteViewTable" style="height: 400px;">
-						<td th:text="${question.content}"></td>
+
+					<tr id="qWriteViewTable" style=" height: 400px;">
+						<td class="card-text" style="width: 100%;" th:text="${question.content}"></td>
 					</tr>
 
 
@@ -70,88 +67,62 @@
 
 
 					<!-- 글 작성자인 경우 -->
-					<div class="col-12" id="qWriteViewButtonBox">
+					<!--<div class="col-12" id="qWriteViewButtonBox">
 						<div class="qWriteViewButton">
-							<form id="deleteForm" action="${pageContext.request.contextPath}/board/boardWritedelet.do"
-								method="post">
-								<!-- 기타 필요한 hidden input 등을 추가 -->
+							<form id="deleteForm" action="${pageContext.request.contextPath}/board/boardWritedelet.do" method="post">
+								 기타 필요한 hidden input 등을 추가 
 								<input type="hidden" name="num" value="${bDto.num}">
 								<input type="hidden" name="password">
 							</form>
 							<a><button id="delete" onclick="showDeleteModal()">삭제</button></a>
 							<a><button
 									onclick="location.href='${pageContext.request.contextPath}/board/boardWritedelet.do?num=${bDto.num}'">수정</button></a>
-							<a><button
-									onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
+							<a><button onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
 						</div>
 					</div>
-				</c:when>
-				<c:otherwise>
-					<!-- 글 작성자가 아닌 경우 -->
-					<div class="col-12" id="qWriteViewButtonBox">
-						<div class="qWriteViewButton">
-							<!-- 현재 로그인한 사용자가 글 작성자인 경우에만 수정, 삭제 버튼을 표시 -->
-							<c:if test="${isWriter != null && !isWriter}">
-								<a><button
-										onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
-							</c:if>
+					</c:when>
+					<c:otherwise>
+						 글 작성자가 아닌 경우 
+						<div class="col-12" id="qWriteViewButtonBox">
+							<div class="qWriteViewButton">
+								 현재 로그인한 사용자가 글 작성자인 경우에만 수정, 삭제 버튼을 표시 
+								<c:if test="${isWriter != null && !isWriter}">
+									<a><button
+											onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
+								</c:if>
+							</div>
 						</div>
+					</c:otherwise>
+					</c:choose>
 					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
+-->
 
 
 
 
 
-
-		<h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
-		<div>
-		    <ul>
-		        <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
-		    </ul>
+		<h5 class="boarder-bottom my-3 py-2" th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+		<div class="card my-3" th:each="answer : ${question.answerList}">
+			<div class="card-body">
+				<div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
+				<div class="d-flex justify-content-end">
+					<div class="badge bg-light text-dark p-2 text-start">
+						<div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<form th:action="@{|/answer/create/${question.id}|}" method="post">
-		    <textarea style="width: 100%;" name="content" id="content" rows="5"></textarea>
-		    <input type="submit" value="답변등록">
+			<textarea style="width: 100%;" name="content" id="content" rows="5"></textarea>
+			<input style="float: right;" type="submit" value="답변등록">
 		</form>
 
 
 
-		<div class="qWBottom">
-			<button type="button" class="btn btn-primary">확인</button>
-			<button type="button" class="btn btn-primary">취소</button>
-		</div>
-
-		<footer>
-			<div class="container">
-				<div class="row" style="width: 100%; margin-top: 40%;">
-					<div class="col-lg-3" style="margin-left: 5%;">
-						<ul id="logo">
-							<li>GROWTH</li>
-						</ul>
-
-					</div>
 
 
-					<div class="col-lg-9" style="margin-left: 5%;">
-						<ul id="text">
-							<li>회사소개</li>
-							<li>이용약관</li>
-							<li>개인정보취급방침</li>
-						</ul>
-						<br>
 
-						<ul id="text1">
-							<li>고객센터 : 1588-1588</li>
-							<li>주소 : 서울시 강남구 테헤란로 111 강남빌딩</li>
-						</ul>
-					</div>
-				</div>
-		</footer>
 
-		<script src="${pageContext.request.contextPath}/js/board.js"></script>
 
 </body>
 
