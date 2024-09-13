@@ -20,7 +20,7 @@
 
 <body>
 	
-	<form action="" method="post">
+	<form th:action="@{/question/write}" method="post">
     <div class="container" id="qImgBox">
         <img src="/img/Q&A.jpg"  alt="">
     </div>
@@ -30,24 +30,13 @@
             <table>
                 <div class="col-12">
                     <tr id="qWriteTable">
-                        <td id="qWriteTableName">작성자</td>
-                        <td><input type="text" name="writer" readonly="readonly" id="inputType" value="${loggedInUser.name }"></td>
+                        <td id="qWriteTableName">제목</td>
+                        <td><input type="text" name="title" id="title"></td>
                     </tr>
+                  
                     <tr id="qWriteTable">
-                        <td id="qWriteTableName"">제목</td>
-                        <td><input type="text" name="subject" id="inputType"></td>
-                    </tr>
-                    <tr id="qWriteTable">
-                        <td id="qWriteTableName">이메일</td>
-                        <td><input type="text" name="email" id="inputType" value="" ></td>
-                    </tr>
-                     <tr id="qWriteTable">
-                        <td id="qWriteTableName">비빌번호</td>
-                        <td><input type="password" name="password" id="inputType"></td>
-                    </tr>
-                    <tr id="qWriteTable">
-                        <td id="qWriteTableName">글내용</td>
-                        <td><textarea placeholder="내용을 입력해주세요" name="content"></textarea></td>
+                        <td id="qWriteTableName">내용</td>
+                        <td><textarea placeholder="내용을 입력해주세요" name="content" id="content"></textarea></td>
                     </tr>
                 </div>
             </table>
@@ -71,8 +60,7 @@
     </div>
 
     <div class="qWBottom">
-        <button type="submit" class="btn btn-primary">확인</button>
-        <button type="reset" class="btn btn-primary">취소</button>
+        <input type="submit" value="저장하기" class="btn btn-primary"></input>
     </div>
     </form>
 
