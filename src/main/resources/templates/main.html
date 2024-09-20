@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" <head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+<head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,66 +28,66 @@
 
 <body class="vh-100 overflow-hiddden">
 	<!--nav------------------------------------------------------------------------------------------->
-	<nav th:fragment="navbarFragment" class="navbar fixed-top navbar-expand-lg">
-		<div class="container">
-			<!-- LOGO -->
-			<a class="navbar-brand fs-4" href="/main">
-				<img src="/img/logo.png" alt="">
-			</a>
-			<!-- Toggle BTN(모바일 비율 아이콘) -->
-			<button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas"
-				data-bs-target="#offcanvasNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<!-- sidebar -->
-			<div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasNavbar">
-				<!-- sidebar header -->
-				<div class="offcanvas-header border-bottom">
-					<h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+	<nav th:fragment="navbarFragment"  class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container">
+					<!-- LOGO -->
+					<a class="navbar-brand fs-4" href="/main">
 						<img src="/img/logo.png" alt="">
-					</h5>
-					<button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"></button>
-				</div>
-				<!-- sidebar body -->
-				<div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
-					<ul class="navbar-nav justify-content-center fs-5 flex-grow-1 pe-3">
-						<li class="nav-item mx-5"><a class="nav-link"
-								href="${pageContext.request.contextPath}/locationRecommand/recommand.do">지역추천</a></li>
-						<li class="nav-item mx-5"><a class="nav-link"
-								href="${pageContext.request.contextPath}/saleAnalysis/search.do">매출분석</a></li>
-						<li class="nav-item dropdown mx-5">
-							<div class="dropdown-center">
-								<a class="nav-link dropdown-toggle" href="#" role="button"
-									data-bs-toggle="dropdown">입지분석</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item"
-											href="${pageContext.request.contextPath}/locationAnalysis/population.do">인구분석</a>
-									</li>
-									<li><a class="dropdown-item"
-											href="${pageContext.request.contextPath}/locationAnalysis/hospital.do">치과현황</a>
-									</li>
-									<li><a class="dropdown-item"
-											href="${pageContext.request.contextPath}/locationAnalysis/map.do">지도</a>
-									</li>
-								</ul>
+					</a>
+					<!-- Toggle BTN(모바일 비율 아이콘) -->
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<!-- sidebar -->
+					<div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasNavbar">
+						<!-- sidebar header -->
+						<div class="offcanvas-header border-bottom">
+							<h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+								<img src="/img/logo.png" alt="">
+							</h5>
+							<button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"></button>
+						</div>
+						<!-- sidebar body -->
+						<div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+							<ul class="navbar-nav justify-content-center fs-5 flex-grow-1 pe-3">
+								<li class="nav-item mx-5"><a class="nav-link"
+										href="${pageContext.request.contextPath}/locationRecommand/recommand.do">지역추천</a></li>
+								<li class="nav-item mx-5"><a class="nav-link"
+										href="${pageContext.request.contextPath}/saleAnalysis/search.do">매출분석</a></li>
+								<li class="nav-item dropdown mx-5">
+									<div class="dropdown-center">
+										<a class="nav-link dropdown-toggle" href="#" role="button"
+											data-bs-toggle="dropdown">입지분석</a>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item"
+													href="${pageContext.request.contextPath}/locationAnalysis/population.do">인구분석</a>
+											</li>
+											<li><a class="dropdown-item"
+													href="${pageContext.request.contextPath}/locationAnalysis/hospital.do">치과현황</a>
+											</li>
+											<li><a class="dropdown-item"
+													href="${pageContext.request.contextPath}/locationAnalysis/map.do">지도</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+								<li class="nav-item mx-5">
+									<a th:href="@{/question/list}" class="nav-link" >Q&A</a></li>
+							</ul>
+
+
+							<div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+								<a class="text-dark" href="${pageContext.request.contextPath}/member/loginPage.do">로그인</a>
+								<a class="text-dark" href="${pageContext.request.contextPath}/member/assent.do">회원가입</a>
 							</div>
-						</li>
-						<li class="nav-item mx-5">
-							<a th:href="@{/question/list}" class="nav-link" >Q&A</a></li>
-					</ul>
 
-
-					<div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-						<a class="text-dark" href="${pageContext.request.contextPath}/member/loginPage.do">로그인</a>
-						<a id="loginBtn" class="text-white text-decoration-none px-3 py-1 rounded-4"
-							href="${pageContext.request.contextPath}/member/assent.do">회원가입</a>
+						</div>
 					</div>
-
 				</div>
-			</div>
-		</div>
-	</nav>
+			</nav>
+
 
 
 	<!--carousel ------------------------------------------------------------->
@@ -312,7 +313,24 @@
 	</div>
 
 	<!--footer------------------------------------------------------------------------------------------->
-
+		  
+	<footer th:fragment="FooterFragment" class="text-body-secondary py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<p class="mb-1">이용약관 개인정보처리방침 회사소개</p>
+					<p></p>
+					<p class="mb-1">서울특별시 마포구</p>
+					<p class="mb-0">대표번호 : 02-1111-1111 l FAX : 02-111-1111</p>
+				</div>
+				<div class="col-6">
+					<p class="float-end mb-1">
+						<!-- Lorem ipsum dolor sit amet consectetu -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>

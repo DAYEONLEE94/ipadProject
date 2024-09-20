@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public class Question {
 	private Integer id;
 	
 	@Column(length = 200)
+	@NotEmpty(message = "제목은 필수항목입니다.")
 	private String title;
 	
 	@Column(columnDefinition = "TEXT")

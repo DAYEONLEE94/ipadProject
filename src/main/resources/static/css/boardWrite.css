@@ -1,5 +1,28 @@
 @charset "UTF-8";
 
+nav {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Black Han Sans', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Gothic A1', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+footer {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Black Han Sans', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Gothic A1', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: white;
+	border-top: 1px lightgray solid;
+	margin-top: 5%;
+}
+
 #useName{
 	margin-right: 25px;
 	margin-top: 15px;
