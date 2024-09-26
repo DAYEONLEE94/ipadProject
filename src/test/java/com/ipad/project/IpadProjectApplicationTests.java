@@ -8,26 +8,22 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ipad.project.board.Question;
 import com.ipad.project.board.QuestionRepository;
+import com.ipad.project.board.QuestionService;
 
 @SpringBootTest
 class IpadProjectApplicationTests {
 
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionService questionService;
 
-	/*
-	 * @Test void JpaTest() { Question q1 = new Question(); q1.setTitle("제목");
-	 * q1.setContent("제목이 잘 들어갔나요?"); q1.setCreateDate(LocalDateTime.now());
-	 * this.questionRepository.save(q1); }
-	 */
 
-	@Test
-	void JpaTest() {
-		Question q2 = new Question();
-		q2.setTitle("테스트");
-		q2.setContent("테스트도 잘 들어가나요?");
-		q2.setCreateDate(LocalDateTime.now());
-		this.questionRepository.save(q2);
-	}
+	  @Test
+	    void testJpa() {
+	        for (int i = 1; i <= 300; i++) {
+	            String title = String.format("테스트 데이터입니다:[%03d]", i);
+	            String content = "내용무";
+	            this.questionService.write(title, content);
+	        }
+	    }
 
 }

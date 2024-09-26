@@ -17,7 +17,7 @@
 
 
 <body>
-	
+
 	<nav th:replace="~{main :: navbarFragment}"></nav>
 
 	<div class="container" id="qImgBox">
@@ -48,10 +48,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="question, loop : ${questionList}">
-						<td th:text="${loop.count}"></td>
+					<tr th:each="question, loop : ${paging}">
+						<td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
 						<td>
 							<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.title}"></a>
+							<span class="text-danger small ms-2"
+								  th:if="${#lists.size(question.answerList) > 0}"
+							  	  th:text="${#lists.size(question.answerList)}">
+							 </span>
 						</td>
 
 						<td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
@@ -67,55 +71,32 @@
 		</div>
 	</div>
 
-	<p>
-		<!-- 페이지 카운터링 소스 작성 !-->
-		<th:if test="${count > 0}">
-			<th:set var="pageCount" value="${count / pageSize + (count%pageSize == 0 ? 0 : 1)}" />
-			<th:set var="startPage" value="${1}" />
-			<th:if test="${currentPage %10 != 0}">
-				<!-- 결과를 정수형으로 리턴 받아야 함 -->
-				<fmt:parseNumber var="result" value="${currentPage/10 }" integerOnly="true" />
-				<th:set var="startPage" value="${result*10+1}" />
-			</th:if>
 
-			<th:if test="${currentPage %10 == 0}">
-				<!-- 결과를 정수형으로 리턴 받아야 함 -->
-				<fmt:parseNumber var="result" value="${currentPage/10}" integerOnly="true" />
-				<th:set var="startPage" value="${(result-1)*10+1}" />
-			</th:if>
+	<!-- 페이징 처리 시작 !-->
+	<div th:if="${!paging.isEmpty()}">
+		<ul class="pagination justify-content-center">
+			<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+				<a class="page-link" 
+					th:href="@{|?page=${paging.number-1}|}">
+					<span>이전</span>
+				</a>
+			</li>
+			<li th:each="page: ${#numbers.sequence(1, paging.totalPages-1)}"
+				 th:if="${page >= paging.number-5 and page <= paging.number+4}"
+				th:classappend="${page == paging.number} ? 'active'" class="page-item">
+				<a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+			</li>
+			<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+				<a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+					<span>다음</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
 
-			<!-- 화면에 보여질 페이지 숫자 처리  -->
-			<th:set var="pageBlock" value="${10}" />
-			<th:set var="endPage" value="${startPage+pageBlock-1}" />
-
-			<th:if test="${endPage > pageCount}">
-				<th:set var="endPage" value="${pageCount}" />
-			</th:if>
-
-			<!-- 이전 링크를 걸지 파악 -->
-			<center>
-				<th:if test="${startPage > 10}">
-					<a href="${pageContext.request.contextPath}/board/boardList.do?pageNum=${startPage-10}">[이전]</a>
-				</th:if>
-
-
-
-				<!--페이징처리  -->
-
-				<th:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href="${pageContext.request.contextPath}/board/boardList.do?pageNum=${i}">[쪽 번호]</a>
-
-				</th:forEach>
-
-				<!-- 다음 !-->
-				<th:if test="${endPage<pageCount}">
-					<a href="${pageContext.request.contextPath}/board/boardList.do?pageNum=${startPage-10}">[다음]</a>
-				</th:if>
-			</center>
-		</th:if>
-
-
-		<footer th:replace="~{main :: FooterFragment}"></footer>
+	<!-- 하단 -->
+	<footer th:replace="~{main :: FooterFragment}"></footer>
 
 
 

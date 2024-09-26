@@ -1,5 +1,6 @@
 package com.ipad.project.board;
 
+import org.springframework.data.domain.Pageable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import com.ipad.project.DataNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
-import lombok.RequiredArgsConstructor;
+
 
 @RequiredArgsConstructor
 @Service
@@ -44,5 +45,12 @@ public class QuestionService {
 		this.questionRepository.save(addWrite);
 		
 	}
+	
+	public Page<Question> getList(int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return this.questionRepository.findAll(pageable);
+    }
 
 }
