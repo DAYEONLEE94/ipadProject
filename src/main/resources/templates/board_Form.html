@@ -24,7 +24,7 @@
 	
 	<nav th:replace="~{main :: navbarFragment}"></nav>
 	
-	<div layout:fragment="content" class="container" style="margin-top: 5%;">
+	<div class="container" style="margin-top: 5%;">
 	    <h5 class="my-3 border-bottom pb-2">질문등록</h5>
 	    <form th:action="@{/question/write}" th:object="${questionForm}" method="post">
 			<div th:replace="~{board_FormErrors :: formErrorsFragment}"></div>
