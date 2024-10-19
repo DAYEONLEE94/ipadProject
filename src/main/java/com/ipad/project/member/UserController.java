@@ -1,5 +1,6 @@
 package com.ipad.project.member;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
-public class UserrController {
+public class UserController {
 
 	private final UserService userService;
 
@@ -33,11 +35,28 @@ public class UserrController {
 			return "member_joinForm";
 		}
 
-		userService.create(userForm.getUserId(), userForm.getPassword1(), userForm.getUsername(), userForm.getPhone(),
-				userForm.getEmail());
+		try {
+			userService.create(userForm.getUserId(), userForm.getPassword1(), userForm.getUsername(), userForm.getPhone(), userForm.getEmail());
+
+		}catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
+			bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
+			return "member_joinForm";
+		}catch (Exception e) {
+			e.printStackTrace();
+			bindingResult.reject("signupFailed", e.getMessage());
+			return "member_joinForm";
+		}
 
 		return "redirect:/";
 
 	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "member_loginForm";
+	}
+	
+	
 
 }
