@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ipad.project.DataNotFoundException;
+import com.ipad.project.member.UserDb;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,11 +38,12 @@ public class QuestionService {
 
 	}
 	
-	public void write(String title, String content) {
+	public void write(String title, String content, UserDb member) {
 		Question addWrite = new Question();
 		addWrite.setTitle(title);
 		addWrite.setContent(content);
 		addWrite.setCreateDate(LocalDateTime.now());
+		addWrite.setAuthor(member);
 		this.questionRepository.save(addWrite);
 		
 	}

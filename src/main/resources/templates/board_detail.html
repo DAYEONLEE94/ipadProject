@@ -32,12 +32,15 @@
 				<div>
 					<tr id="qWriteViewTable">
 						<td th:text="${question.title}"></td>
+						<td><span  style="margin-right: 10%" th:if="${question.author != null}" th:text="${question.author.userId}"></span></td>
 						<td style=" white-space: nowrap;" th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
 					</tr>
 
 					<tr id="qWriteViewTable" style=" height: 400px;">
 						<td class="card-text" style="width: 100%;" th:text="${question.content}"></td>
 					</tr>
+					
+					
 
 
 				</div>
@@ -51,8 +54,7 @@
 			<div class="qWriteViewButton">
 				<a><button
 						onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?num=${bDto.num}'">삭제</button></a>
-				<a><button
-						onclick="location.href='${pageContext.request.contextPath}/board/boardWriteEidt.do?num=${bDto.num}'">수정</button></a>
+				<a th:href="@{|/question/modify/${question.id}|}" class="btn btn-md btn-outline-secondary" sec:authorize="isAuthenticated()">수정</a>
 				<a><button
 						onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
 			</div>
@@ -111,13 +113,14 @@
 					<div class="badge bg-light text-dark p-2 text-start">
 						<div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
 		<form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
 			<div th:replace="~{board_FormErrors :: formErrorsFragment}"></div>
-			
-			<textarea style="width: 100%;" th:field="*{content}" rows="5"></textarea>
+			<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control" rows="10"></textarea>
+			<textarea sec:authorize="isAuthenticated()" class="form-control" style="width: 100%;" th:field="*{content}" rows="5"></textarea>
 			<input style="float: right;" type="submit" value="답변등록">
 		</form>
 
