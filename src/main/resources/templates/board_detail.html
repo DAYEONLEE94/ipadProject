@@ -7,7 +7,7 @@
 
 	<link rel="stylesheet" href="/css/boardWriteView.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap">
 	<!--<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css"}>-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
@@ -32,15 +32,20 @@
 				<div>
 					<tr id="qWriteViewTable">
 						<td th:text="${question.title}"></td>
-						<td><span  style="margin-right: 10%" th:if="${question.author != null}" th:text="${question.author.userId}"></span></td>
-						<td style=" white-space: nowrap;" th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+						<td><span style="margin-right: 10%" th:if="${question.author != null}"
+								th:text="${question.author.userId}"></span></td>
+						<td style=" white-space: nowrap;"
+							th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
 					</tr>
 
 					<tr id="qWriteViewTable" style=" height: 400px;">
 						<td class="card-text" style="width: 100%;" th:text="${question.content}"></td>
+
 					</tr>
+
 					
-					
+
+
 
 
 				</div>
@@ -54,9 +59,17 @@
 			<div class="qWriteViewButton">
 				<a><button
 						onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?num=${bDto.num}'">삭제</button></a>
-				<a th:href="@{|/question/modify/${question.id}|}" class="btn btn-md btn-outline-secondary" sec:authorize="isAuthenticated()">수정</a>
-				<a><button
-						onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
+				<div class="my-3">
+					<a th:href="@{|/question/modify/${question.id}|}" class="btn btn-md btn-outline-secondary"
+						sec:authorize="isAuthenticated()"
+						th:if="${question.author != null and #authentication?.principal?.username == question.author?.userId}"
+						th:text="수정"></a>
+
+					<a href="javascript:void(0);" th:data-uri="@{|/question/delete/${question.id}|}"
+						class="delete btn btn-md btn-outline-secondary" sec:authorize="isAuthenticated()"
+						th:if="${question.author != null and #authentication?.principal?.username == question.author?.userId}"
+						th:text="삭제" }></a>
+				</div>
 			</div>
 		</div>
 
@@ -68,67 +81,52 @@
 			<c:set var="writeUser" value="${sessionScope.writeUser}" />
 			<c:choose>
 				<c:when test="${isWriter}">
+					<h5 class="boarder-bottom my-3 py-2" th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|">
+					</h5>
+					<div class="card my-3" th:each="answer : ${question.answerList}">
+						<div class="card-body">
+							<div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
+							<div class="d-flex justify-content-end">
+								<div class="badge bg-light text-dark p-2 text-start">
+									<div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+								</div>
 
-
-					<!-- 글 작성자인 경우 -->
-					<!--<div class="col-12" id="qWriteViewButtonBox">
-						<div class="qWriteViewButton">
-							<form id="deleteForm" action="${pageContext.request.contextPath}/board/boardWritedelet.do" method="post">
-								 기타 필요한 hidden input 등을 추가 
-								<input type="hidden" name="num" value="${bDto.num}">
-								<input type="hidden" name="password">
-							</form>
-							<a><button id="delete" onclick="showDeleteModal()">삭제</button></a>
-							<a><button
-									onclick="location.href='${pageContext.request.contextPath}/board/boardWritedelet.do?num=${bDto.num}'">수정</button></a>
-							<a><button onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
-						</div>
-					</div>
-					</c:when>
-					<c:otherwise>
-						 글 작성자가 아닌 경우 
-						<div class="col-12" id="qWriteViewButtonBox">
-							<div class="qWriteViewButton">
-								 현재 로그인한 사용자가 글 작성자인 경우에만 수정, 삭제 버튼을 표시 
-								<c:if test="${isWriter != null && !isWriter}">
-									<a><button
-											onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">목록</button></a>
-								</c:if>
 							</div>
 						</div>
-					</c:otherwise>
-					</c:choose>
+						<div class="my-3">
+							<a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-md btn-outline-secondary"
+								sec:authorize="isAuthenticated()"
+								th:if="${answer.author != null and #authentication?.principal?.username == answer.author?.userId}"
+								th:text="수정"></a>
+							<a href="javascript:void(0);" th:href="@{|/answer/delete/${answer.id}|}"
+								class="delete btn btn-md btn-outline-secondary" sec:authorize="isAuthenticated()"
+								th:if="${answer.author != null and #authentication?.principal?.username == answer.author?.userId}"
+								th:text="삭제"></a>
+						</div>
 					</div>
--->
+					<form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
+						<div th:replace="~{board_FormErrors :: formErrorsFragment}"></div>
+						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control"
+							rows="10"></textarea>
+						<textarea sec:authorize="isAuthenticated()" class="form-control" style="width: 100%;"
+							th:field="*{content}" rows="5"></textarea>
+						<input style="float: right;" type="submit" value="답변등록">
+					</form>
 
 
+					<footer th:replace="~{main :: FooterFragment}"></footer>
 
 
-
-		<h5 class="boarder-bottom my-3 py-2" th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
-		<div class="card my-3" th:each="answer : ${question.answerList}">
-			<div class="card-body">
-				<div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
-				<div class="d-flex justify-content-end">
-					<div class="badge bg-light text-dark p-2 text-start">
-						<div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		<form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
-			<div th:replace="~{board_FormErrors :: formErrorsFragment}"></div>
-			<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control" rows="10"></textarea>
-			<textarea sec:authorize="isAuthenticated()" class="form-control" style="width: 100%;" th:field="*{content}" rows="5"></textarea>
-			<input style="float: right;" type="submit" value="답변등록">
-		</form>
-
-
-		<footer th:replace="~{main :: FooterFragment}"></footer>
-
-
-
+					<script type='text/javascript'>
+						const delete_elements = document.getElementsByClassName("delete");
+						Array.from(delete_elements).forEach(function (element) {
+							element.addEventListener('click', function () {
+								if (confirm("정말로 삭제하시겠습니까?")) {
+									location.href = this.dataset.uri;
+								};
+							});
+						});
+					</script>
 
 
 </body>
