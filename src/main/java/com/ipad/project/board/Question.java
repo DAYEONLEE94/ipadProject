@@ -2,6 +2,7 @@ package com.ipad.project.board;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import com.ipad.project.member.UserDb;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
@@ -34,6 +36,7 @@ public class Question {
 	private String content;
 	
 	private LocalDateTime createDate;
+	private LocalDateTime modifyDate;
 	
 	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;
@@ -41,5 +44,8 @@ public class Question {
 	@ManyToOne
 	private UserDb author;
 
-	private LocalDateTime modifyDate;
+	
+	@ManyToMany
+	Set<UserDb> voter;
+
 }
