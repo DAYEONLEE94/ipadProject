@@ -18,22 +18,20 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools' 
-	compileOnly 'org.projectlombok:lombok' 
-    annotationProcessor 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    testImplementation 'org.junit.jupiter:junit-jupiter' 
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
-    implementation 'org.commonmark:commonmark:0.21.0' //마크다운
+	implementation 'org.springframework.boot:spring-boot-starter-web' //내장 톰캣 서버를 통한 웹 애플리케이션 실행
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' //테스트 라이브러리
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' //테스트 실행 시 필요한 런타임 의존성
+	developmentOnly 'org.springframework.boot:spring-boot-devtools' //변경 사항 있을 시 자동으로 리스타트
+	compileOnly 'org.projectlombok:lombok' //Getter, Setter, Data 어노테이션 코드 간소화
+    annotationProcessor 'org.projectlombok:lombok'//Getter, Setter, Data 어노테이션 코드 간소
+    runtimeOnly 'com.h2database:h2' // h2데이터베이스 사용
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //Jpa를 사용한 데이터베이스와의 CRUD작업 
+    testImplementation 'org.junit.jupiter:junit-jupiter' //@Test, @BeforeEach, @AfterEach, @BeforeAll, @AfterAll 등 어노테이션 사용
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //타임리프를 사용하여 HTML을 렌더링
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' //템플릿을 재사용할 수 있도록 해주는 라이브러리 
+    implementation 'org.springframework.boot:spring-boot-starter-validation'//@Valid, @NotNull, @Size 등의 어노테이션을 통해 입력값 유효성 검사
+    implementation 'org.springframework.boot:spring-boot-starter-security' //인증 및 권한 관리로 로그인, 로그아웃, 권한관리 보안기능 
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE' //HTML 템플릿에서 보안 관련 태그를 사용
 }
 
 tasks.named('test') {

@@ -33,13 +33,11 @@ public class AnswerController {
 	@PostMapping("/create/{id}")
 	public String createAnswer(Model model, @PathVariable("id") Integer id, @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
 		Question question = this.questionService.getQuestion(id);
-		
 		UserDb userDb = this.userService.getUser(principal.getName());
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("question", question);
 			return "board_detail";
 		}
-		
 		Answer answer = this.answerService.create(question, answerForm.getContent(), userDb);
 		return String.format("redirect:/question/detail/%s#answer_%s", answer.getQuestion().getId(), answer.getId());
 	}

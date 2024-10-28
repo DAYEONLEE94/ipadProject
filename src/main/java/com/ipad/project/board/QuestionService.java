@@ -16,8 +16,6 @@ import com.ipad.project.member.UserDb;
 
 import lombok.RequiredArgsConstructor;
 
-
-
 @RequiredArgsConstructor
 @Service
 public class QuestionService {
@@ -35,7 +33,6 @@ public class QuestionService {
 		} else {
 			throw new DataNotFoundException("question not found");
 		}
-
 	}
 	
 	public void write(String title, String content, UserDb member) {
@@ -45,7 +42,6 @@ public class QuestionService {
 		addWrite.setCreateDate(LocalDateTime.now());
 		addWrite.setAuthor(member);
 		this.questionRepository.save(addWrite);
-		
 	}
 	
 	public Page<Question> getList(int page) {
@@ -70,7 +66,4 @@ public class QuestionService {
 		question.getVoter().add(userDb);
 		this.questionRepository.save(question);
 	}
-	
-	
-
 }

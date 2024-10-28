@@ -26,7 +26,6 @@ public class UserService {
 		user.setEmail(email);
 		this.userRepository.save(user);
 		return user;
-
 	}
 	
 	public UserDb getUser(String userId) {
@@ -36,7 +35,5 @@ public class UserService {
 		}else {
 			throw new DataNotFoundException("userDb not found");
 		}
-		
 	}
-
 }

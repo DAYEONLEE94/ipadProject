@@ -34,7 +34,6 @@ public class UserController {
 			bindingResult.rejectValue("password2", "passwordInCorrect", "2개의 패스워드가 일치하지 않습니다.");
 			return "member_joinForm";
 		}
-
 		try {
 			userService.create(userForm.getUserId(), userForm.getPassword1(), userForm.getUsername(), userForm.getPhone(), userForm.getEmail());
 
@@ -47,9 +46,7 @@ public class UserController {
 			bindingResult.reject("signupFailed", e.getMessage());
 			return "member_joinForm";
 		}
-
 		return "redirect:/";
-
 	}
 	
 	@GetMapping("/login")

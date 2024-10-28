@@ -39,9 +39,6 @@ public class QuestionController {
 	public String list(Model model,  @RequestParam(value="page", defaultValue="0") int page) {
 		Page<Question> paging = this.questionService.getList(page);
 		model.addAttribute("paging", paging);
-		System.out.println("커뮤니티 입장");
-//		System.out.println("찍히고 있나요? " + questionList.get(0).getTitle());
-//		System.out.println("찍히고 있나요? " + questionList.get(0).getContent());
 		return "board_List";
 	}
 	
